@@ -61,6 +61,46 @@ div.main{
     padding: 10px;
 }
 
+div.center{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+div.login{
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    background-color: var(--color_secondary);
+    color: var(--text_color_secondary);
+    width: 25%;
+    padding: 10px;
+    box-shadow: var(--shadow_primary), var(--shadow_secondary);
+}
+
+div.login input[type='text'], div.login input[type='password'], div.login input[type='submit']{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: var(--text_color_primary);
+}
+
+div.login input[type='submit']{
+    background-color: var(--color_secondary);
+    color: var(--color_primary);
+    border: none;
+}
+
+div.login input:hover[type='submit']{
+    background-color: var(--color_primary);
+    color: var(--color_secondary);
+}
+
 @media screen and (max-width: 600px){
     div.nav{
         position: relative;
@@ -70,8 +110,13 @@ div.main{
         margin-left: 0%;
     }
 
-    div.main, div.nav{
+    div.main, div.nav, div.login{
         width: 100%;
+    }
+
+    div.center{
+        justify-content: none;
+        align-items: none;
     }
 
 }

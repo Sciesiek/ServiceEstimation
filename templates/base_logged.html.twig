@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="nav">
+    {% block nav %}
+    <a href="">Klienci</a>
+    <a href="">Kosztorysy</a>
+    <a href="">Usługi</a>
+    <a href="{{ path('fos_user_security_logout') }}">Wyloguj</a>
+    {% endblock %}
+</div>
+<div class="main">
+    {% block main %}
+    {{ message }}
+    {% endblock %}
+</div>
+<div class="foot">
+    {% block foot %}
+
+    {% endblock %}
+</div>
+{% endblock %}
