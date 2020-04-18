@@ -3,11 +3,11 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
 * @Route("/")
 */
-class MainController{
+class MainController extends AbstractController{
    
     /**
     * @Route("")
@@ -15,9 +15,9 @@ class MainController{
     public function welcome(){
         $message = "Hello World";
 
-        return new Response(
-            '<html><body>Message: '.$message.'</body></html>'
-        );
+        return $this->render('base.html.twig', [
+            'message' => $message,
+        ]);
     }
 
 }

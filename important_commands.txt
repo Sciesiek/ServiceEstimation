@@ -15,3 +15,6 @@ docker exec -it sf4_mysql bash -l
 
 #composer down
 docker-compose down
+
+#compile css, js
+yarn encore dev --watch
