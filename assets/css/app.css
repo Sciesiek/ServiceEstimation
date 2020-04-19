@@ -1,10 +1,10 @@
 :root{
     --color_primary: white;
-    --color_secondary: rgb(97, 90, 196);
+    --color_secondary: rgb(19, 16, 155);
     --text_color_primary: black;
     --text_color_secondary: white;
-    --shadow_primary: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
-    --shadow_secondary: 0 12px 40px 0 rgba(0, 0, 0, 0.2);
+    --shadow_primary: 0 10px 20px 5px rgba(0, 0, 0, 0.25);
+    --shadow_secondary: 0 12px 40px 5px rgba(0, 0, 0, 0.2);
 }
 
 *{
@@ -55,10 +55,13 @@ div.nav a:hover{
 div.main{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     width: 80%;
     margin-left: 20%;
     padding: 10px;
+}
+div.main h1{
+    width: 100%;
 }
 
 div.center{
@@ -99,6 +102,102 @@ div.login input[type='submit']{
 div.login input:hover[type='submit']{
     background-color: var(--color_primary);
     color: var(--color_secondary);
+}
+
+.table{
+    width: 100%;
+}
+
+.table, .table th, .table td{
+    text-align: left;
+    border-bottom: 1px solid var(--color_secondary);
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.table tr:nth-child(even) {
+    background-color: var(--color_secondary);
+    color: var(--text_color_secondary);
+}
+
+.table tr:hover{
+    background-color: black;
+    color: white;
+}
+
+a.details, a.edit, a.new, a.delete{
+    display: inline-block;
+    color: var(--text_color_secondary);
+    padding: 6px;
+    text-decoration: none;
+    box-shadow: 0, 0;
+    transition: padding 0.5s, transform 0.5s, box-shadow 0.5s;
+}
+
+a.details:hover, a.edit:hover, a.new:hover, a.delete:hover{
+    background-color: var(--color_primary);
+    color: var(--color_secondary);
+    padding: 12px ;
+    transform: scaleX(1.1);
+    box-shadow: var(--shadow_primary), var(--shadow_secondary);
+}
+
+a.details{
+    background-color: rgb(90, 211, 35);
+}
+
+a.edit{
+    background-color: rgb(44, 133, 235);
+}
+
+a.new{
+    background-color: rgb(90, 211, 35);
+}
+
+a.delete{
+    background-color: rgb(211, 35, 35);
+}
+
+.right{
+    text-align: right;
+    display: block;
+}
+
+.form{
+    width: 100%;
+}
+
+
+.form input[type=text] {
+    align-self: right;
+    border: none;
+    border-bottom: 2px solid var(--color_secondary);
+}
+
+.form input{
+    display: block;
+    width: 100%;
+    padding: 15px;
+    padding-top: 15px;
+    font-size: x-large;
+}
+
+button{
+    border: none;
+    font-size: x-large;
+    background-color: var(--color_secondary);
+    color: var(--color_primary);
+    padding: 6px;
+    box-shadow: 0, 0;
+    transition: padding 0.5s, transform 0.5s, box-shadow 0.5s;
+}
+
+button:hover{
+    background-color: var(--color_primary);
+    color: var(--color_secondary);
+    padding: 12px;
+    transform: scaleX(1.1);
+    box-shadow: var(--shadow_primary), var(--shadow_secondary);
 }
 
 @media screen and (max-width: 600px){

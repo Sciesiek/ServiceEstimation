@@ -1,0 +1,10 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Edytuj klienta{% endblock %}
+
+{% block main %}
+    <h1>Edytuj klienta</h1>
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

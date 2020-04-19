@@ -1,0 +1,39 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Spis klientów{% endblock %}
+
+{% block main %}
+    <h1>Spis klientów</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.name }}</td>
+                <td>{{ client.surname }}</td>
+                <td>
+                <span class="right">
+                    <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}" class="edit">Edytuj</a>
+                <span>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Brank danych</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_new') }}" class="new">Dodaj nowego klienta</a>
+{% endblock %}

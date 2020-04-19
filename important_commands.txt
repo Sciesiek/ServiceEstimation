@@ -4,12 +4,6 @@ docker exec -it -u dev sf4_php bash
 #create symfony web app skeleton 
 composer create-project symfony/website-skeleton:^4.4 my_project_name
 
-#symfony working docker container
-https://medium.com/@romaricp/the-perfect-kit-starter-for-a-symfony-4-project-with-docker-and-php-7-2-fda447b6bca1
-
-#create database
-php bin/console doctrine:database:create
-
 #mysql container bash
 docker exec -it sf4_mysql bash -l 
 
@@ -18,3 +12,25 @@ docker-compose down
 
 #compile css, js
 yarn encore dev --watch
+
+#symfony working docker container
+https://medium.com/@romaricp/the-perfect-kit-starter-for-a-symfony-4-project-with-docker-and-php-7-2-fda447b6bca1
+
+#create database
+php bin/console doctrine:database:create
+
+#drop database
+php bin/console doctrine:database:drop
+
+#make entity
+php bin/console make:entity
+
+#make migrations for database ou of defined earlier enitites
+php bin/console make:migration
+
+#update database by lastly generated migrations
+php bin/console doctrine:migrations:migrate
+
+#generate controller for database
+php bin/console make:crud Product
+
