@@ -1,17 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_logged.html.twig' %}
+{% block title %}Spis kosztorysów{% endblock %}
 
-{% block title %}Estimate index{% endblock %}
-
-{% block body %}
-    <h1>Estimate index</h1>
+{% block main %}
+    <h1>Spis kosztorysów</h1>
+    
+    <a href="{{ path('estimate_new') }}" class="new">Utwórz nowy</a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +22,18 @@
                 <td>{{ estimate.name }}</td>
                 <td>{{ estimate.description }}</td>
                 <td>
-                    <a href="{{ path('estimate_show', {'id': estimate.id}) }}">show</a>
-                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}">edit</a>
+                <span class="right">
+                    <a href="{{ path('estimate_show', {'id': estimate.id}) }}" class="details">Szczegóły</a>
+                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="edit">Edytuj</a>
+                </span>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Brak danych</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('estimate_new') }}">Create new</a>
 {% endblock %}

@@ -128,4 +128,9 @@ class Adres
 
         return $this;
     }
+
+    public function __toString(){
+        return $this->getCity().", ".$this->getPostal()
+        .", ".$this->getStreet().", ".$this->getHousingNumber();
+    }
 }

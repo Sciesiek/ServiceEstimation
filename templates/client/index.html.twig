@@ -4,7 +4,7 @@
 
 {% block main %}
     <h1>Spis klientów</h1>
-
+    <a href="{{ path('client_new') }}" class="new">Dodaj nowego klienta</a>
     <table class="table">
         <thead>
             <tr>
@@ -35,5 +35,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('client_new') }}" class="new">Dodaj nowego klienta</a>
 {% endblock %}

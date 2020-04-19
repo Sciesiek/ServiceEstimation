@@ -161,12 +161,12 @@ a.delete{
 .right{
     text-align: right;
     display: block;
+    width: 100%;
 }
 
 .form{
     width: 100%;
 }
-
 
 .form input[type=text] {
     align-self: right;
@@ -177,9 +177,13 @@ a.delete{
 .form input{
     display: block;
     width: 100%;
-    padding: 15px;
-    padding-top: 15px;
+    padding: 5px 15px 0px 15px;
     font-size: x-large;
+}
+
+.form label{
+    display: inline-block;
+    padding-top: 25px;
 }
 
 button{
