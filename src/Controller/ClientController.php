@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Entity\Adres;
+use App\Entity\Estimate;
 use App\Form\ClientType;
 use App\Repository\ClientRepository;
+use App\Repository\AdresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,8 +56,18 @@ class ClientController extends AbstractController
      */
     public function show(Client $client): Response
     {
+        $adres = $this->getDoctrine()
+        ->getRepository(Adres::class)
+        ->findBy(['client' => $client]);
+
+        $estimates = $this->getDoctrine()
+        ->getRepository(Estimate::class)
+        ->findBy(['client' => $client]);
+
         return $this->render('client/show.html.twig', [
             'client' => $client,
+            'adres' => $adres,
+            'estimates' => $estimates,
         ]);
     }
 

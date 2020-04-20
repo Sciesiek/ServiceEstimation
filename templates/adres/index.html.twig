@@ -1,41 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_logged.html.twig' %}
 
-{% block title %}Adres index{% endblock %}
+{% block title %}Spis adresów{% endblock %}
 
-{% block body %}
-    <h1>Adres index</h1>
+{% block main %}
+    <h1>Spis adresów</h1>
+    <a href="{{ path('adres_new') }}" class="new">Dodaj nowy</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>City</th>
-                <th>Street</th>
-                <th>HousingNumber</th>
-                <th>Postal</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for adre in adres %}
-            <tr>
-                <td>{{ adre.id }}</td>
-                <td>{{ adre.city }}</td>
-                <td>{{ adre.street }}</td>
-                <td>{{ adre.housingNumber }}</td>
-                <td>{{ adre.postal }}</td>
-                <td>
-                    <a href="{{ path('adres_show', {'id': adre.id}) }}">show</a>
-                    <a href="{{ path('adres_edit', {'id': adre.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {{ include('adres/_table.html.twig') }} 
 
-    <a href="{{ path('adres_new') }}">Create new</a>
 {% endblock %}

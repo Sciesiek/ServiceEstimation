@@ -1,6 +1,6 @@
 :root{
     --color_primary: white;
-    --color_secondary: rgb(19, 16, 155);
+    --color_secondary: rgb(116, 13, 21);
     --text_color_primary: black;
     --text_color_secondary: white;
     --shadow_primary: 0 10px 20px 5px rgba(0, 0, 0, 0.25);
@@ -109,10 +109,18 @@ div.login input:hover[type='submit']{
 }
 
 .table, .table th, .table td{
-    text-align: left;
     border-bottom: 1px solid var(--color_secondary);
     border-collapse: collapse;
     padding: 5px;
+}
+
+.table th, .table td{
+    text-align: left;
+}
+
+.desc{
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .table tr:nth-child(even) {
@@ -174,11 +182,16 @@ a.delete{
     border-bottom: 2px solid var(--color_secondary);
 }
 
-.form input{
+.form input, .form select{
     display: block;
     width: 100%;
     padding: 5px 15px 0px 15px;
     font-size: x-large;
+    margin-bottom: 15px;
+}
+
+.form button{
+    width: 100%;
 }
 
 .form label{
@@ -203,6 +216,54 @@ button:hover{
     transform: scaleX(1.1);
     box-shadow: var(--shadow_primary), var(--shadow_secondary);
 }
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.modal-content{
+    background-color: var(--color_primary);
+    z-index: 2;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    box-shadow: var(--shadow_primary), var(--shadow_secondary);
+}
+
+.modal-content{
+    animation-name: zoom;
+    animation-duration: 1s;
+}
+
+@keyframes zoom{
+    from{
+        transform: scale(0.1);
+    }
+
+    to{
+        transform: translate(-50%, -50%);
+    }
+}
+
+.close{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--color_secondary);
+    font-size: 40px;
+}
+
 
 @media screen and (max-width: 600px){
     div.nav{

@@ -19,10 +19,9 @@ class AdresRepository extends ServiceEntityRepository
         parent::__construct($registry, Adres::class);
     }
 
-    // /**
-    //  * @return Adres[] Returns an array of Adres objects
-    //  */
-    /*
+    /**
+     * @return Adres[] Returns an array of Adres objects
+     */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
@@ -34,7 +33,7 @@ class AdresRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Adres

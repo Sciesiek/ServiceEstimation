@@ -130,7 +130,7 @@ class Adres
     }
 
     public function __toString(){
-        return $this->getCity().", ".$this->getPostal()
-        .", ".$this->getStreet().", ".$this->getHousingNumber();
+        return $this->getCity()." ".$this->getPostal()
+        .", ".$this->getStreet()." ".$this->getHousingNumber();
     }
 }

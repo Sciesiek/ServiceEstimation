@@ -5,6 +5,12 @@
 {% block main %}
     <h1>Edytuj klienta</h1>
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+    <button onclick="openModal('edit01')">Open in Modal</button>
+    <div class="modal" id="edit01">
+        <div class="modal-content">
+        <span class="close" onclick="closeModal('edit01')">&times;</span>
+        {{ include('client/_form.html.twig', {'button_label': 'Aktualizuj'}) }}
+        </div>
+    </div>
 
 {% endblock %}

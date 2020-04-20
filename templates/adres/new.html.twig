@@ -1,11 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_logged.html.twig' %}
 
-{% block title %}New Adres{% endblock %}
+{% block title %}Nowy adres{% endblock %}
 
-{% block body %}
-    <h1>Create new Adres</h1>
+{% block main %}
+    <h1>Nowy adres</h1>
 
     {{ include('adres/_form.html.twig') }}
 
-    <a href="{{ path('adres_index') }}">back to list</a>
 {% endblock %}

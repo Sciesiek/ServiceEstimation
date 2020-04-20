@@ -1,0 +1,38 @@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Miasto</th>
+            <th>Ulica</th>
+            <th>Numer domu</th>
+            <th>Kod Pocztowy</th>
+            <th>Klient</th>
+            <th>Kosztorys</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for adre in adres %}
+        <tr>
+            <td>{{ adre.id }}</td>
+            <td>{{ adre.city }}</td>
+            <td>{{ adre.street }}</td>
+            <td>{{ adre.housingNumber }}</td>
+            <td>{{ adre.postal }}</td>
+            <td>{{ adre.client }}</td>
+            <td>{{ adre.estimate }}</td>
+            <td>
+                <span class="right">
+                    <a href="{{ path('adres_show', {'id': adre.id}) }}" class="details">Pokaż</a>
+                    <a href="{{ path('adres_edit', {'id': adre.id}) }}" class="edit">Edytuj</a>
+                </span>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">Brak danych</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

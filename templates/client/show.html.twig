@@ -3,26 +3,17 @@
 {% block title %}Dane klienta{% endblock %}
 
 {% block main %}
-    <h1>Klient</h1>
-    <a href="{{ path('client_edit', {'id': client.id}) }}" class="edit">Aktualizuj</a>
+    <h1>{{ client.id }} Klient {{ client.name }} {{ client.surname }}</h1>
+    <a href="{{ path('client_edit', {'id': client.id}) }}" class="edit">Edytuj</a>
 
     {{ include('client/_delete_form.html.twig') }}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Imie</th>
-                <td>{{ client.name }}</td>
-            </tr>
-            <tr>
-                <th>Nazwisko</th>
-                <td>{{ client.surname }}</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <h1>Adresy</h1>
+    {{ include('adres/_table.html.twig') }}
+    <h1>Kosztorysy</h1>
+    {{ include('estimate/_table.html.twig') }}
+
+
 
 
 {% endblock %}

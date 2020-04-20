@@ -1,0 +1,33 @@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Klient</th>
+                <th>Adres</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estimate in estimates %}
+            <tr>
+                <td>{{ estimate.id }}</td>
+                <td>{{ estimate.name }}</td>
+                <td>{{ estimate.description }}</td>      
+                <td>{{ estimate.client }}</td>
+                <td>{{ estimate.adres }}</td>
+                <td>
+                <span class="right">
+                    <a href="{{ path('estimate_show', {'id': estimate.id}) }}" class="details">Szczegóły</a>
+                    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="edit">Edytuj</a>
+                </span>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Brak danych</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
