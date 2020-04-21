@@ -5,13 +5,8 @@
 {% block main %}
     <h1>Spis klientów</h1>
     <button onclick="openModal('add')">Dodaj nowego klienta</button>
-    <div class="modal" id="add">
-        <div class="modal-content">
-        <h1>Dodaj nowego klienta</h1>
-        <span class="close" onclick="closeModal('add')">&times;</span>
-        {{ include('client/_form.html.twig', {'value': 'Dodaj'}) }}
-        </div>
-    </div>
+    {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Dodaj klienta',
+     form_path: 'client/_form.html.twig', form_button: 'Dodaj', action_path: path('client_new') }) }}
     <table class="table">
         <thead>
             <tr>
@@ -30,17 +25,14 @@
                 <td>
                 <span class="right">
                 <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
-                <button onclick="openModal('edit')">Edytuj</button>
+                <button onclick="openModal('edit{{ client.id }}')">Edytuj</button>
                 <span>
                 </td>
             </tr>
-                <div class="modal" id="edit">
-                    <div class="modal-content">
-                    <h1>Edytuj klienta</h1>
-                    <span class="close" onclick="closeModal('edit')">&times;</span>
-                    {{ include('client/_form.html.twig', {'value': 'Edit',  'execute_path' : path('client_edit', {'id': client.id})}) }}
-                    </div>
-                </div>
+                {{ include('_modal_form.html.twig', {modal_id: ['edit', client.id]|join, modal_title: 'Edytuj klienta',
+                 form_path: 'client/_form.html.twig', form_button: 'Edytuj', action_path: path('client_edit', {'id': client.id }),
+                  'form': client.form}) }}
+                
         {% else %}
             <tr>
                 <td colspan="4">Brak danych</td>

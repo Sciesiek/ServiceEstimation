@@ -5,7 +5,7 @@
     {# <a href="{{ path('client', {'id': client.id}) }}" type="button"
     class="add"
     data-toggle="tooltip" title="Dodaj klienta">Zapisz</a> #}
-    <input formaction="{{ execute_path|default(path('client_new')) }}" type="submit"
+    <input formaction="{{ action_path }}" type="submit"
     value="{{ value|default('Zapisz') }}">
 {{ form_end(form) }}
 </div>

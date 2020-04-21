@@ -24,8 +24,14 @@ class ClientController extends AbstractController
     public function index(ClientRepository $clientRepository): Response
     {
         $form = $this->createForm(ClientType::class);
+        $clients = $clientRepository->findAll();
+        foreach($clients as $client){
+            $clientForm = $this->createForm(ClientType::class, $client);
+            $client->setForm($clientForm->createView());
+        }
+
         return $this->render('client/index.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clients,
             'form' => $form->createView(),
         ]);
     }

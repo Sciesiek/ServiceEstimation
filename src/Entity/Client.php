@@ -38,6 +38,8 @@ class Client
      */
     private $estimates;
 
+    private $form;
+
     public function __construct()
     {
         $this->adres = new ArrayCollection();
@@ -69,6 +71,18 @@ class Client
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
 
         return $this;
     }
@@ -138,4 +152,5 @@ class Client
     public function __toString(){
         return $this->getName()." ".$this->getSurname();
     }
+
 }

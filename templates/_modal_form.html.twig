@@ -1,0 +1,10 @@
+  {# in order to use must add button ex:
+  <button onclick="openModal('modal_id')">button name</button> 
+  #}
+<div class="modal" id="{{ modal_id }}">
+    <div class="modal-content">
+    <h1>{{ modal_title }}</h1>
+    <span class="close" onclick="closeModal('{{ modal_id }}')">&times;</span>
+    {{ include( form_path , {'value': form_button, 'action_path': action_path, 'form': form}) }}
+    </div>
+</div>
