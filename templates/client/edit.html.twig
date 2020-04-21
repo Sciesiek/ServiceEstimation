@@ -5,9 +5,10 @@
 {% block main %}
     <h1>Edytuj klienta</h1>
 
-    <button onclick="openModal('edit01')">Open in Modal</button>
+    <button onclick="openModal('edit01')">Edytuj</button>
     <div class="modal" id="edit01">
         <div class="modal-content">
+        <h1>Edytuj klienta</h1>
         <span class="close" onclick="closeModal('edit01')">&times;</span>
         {{ include('client/_form.html.twig', {'button_label': 'Aktualizuj'}) }}
         </div>

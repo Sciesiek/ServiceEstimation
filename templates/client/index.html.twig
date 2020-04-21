@@ -4,7 +4,14 @@
 
 {% block main %}
     <h1>Spis klientów</h1>
-    <a href="{{ path('client_new') }}" class="new">Dodaj nowego klienta</a>
+    <button onclick="openModal('add')">Dodaj nowego klienta</button>
+    <div class="modal" id="add">
+        <div class="modal-content">
+        <h1>Dodaj nowego klienta</h1>
+        <span class="close" onclick="closeModal('add')">&times;</span>
+        {{ include('client/_form.html.twig', {'value': 'Dodaj'}) }}
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -22,11 +29,18 @@
                 <td>{{ client.surname }}</td>
                 <td>
                 <span class="right">
-                    <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}" class="edit">Edytuj</a>
+                <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
+                <button onclick="openModal('edit')">Edytuj</button>
                 <span>
                 </td>
             </tr>
+                <div class="modal" id="edit">
+                    <div class="modal-content">
+                    <h1>Edytuj klienta</h1>
+                    <span class="close" onclick="closeModal('edit')">&times;</span>
+                    {{ include('client/_form.html.twig', {'value': 'Edit',  'execute_path' : path('client_edit', {'id': client.id})}) }}
+                    </div>
+                </div>
         {% else %}
             <tr>
                 <td colspan="4">Brak danych</td>
