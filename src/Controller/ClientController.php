@@ -6,6 +6,8 @@ use App\Entity\Client;
 use App\Entity\Adres;
 use App\Entity\Estimate;
 use App\Form\ClientType;
+use App\Form\AdresType;
+use App\Form\EstimateType;
 use App\Repository\ClientRepository;
 use App\Repository\AdresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,14 +51,14 @@ class ClientController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
+        }
+        $redirectRoute = $request->headers->get('referer');
 
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
             return $this->redirectToRoute('client_index');
         }
-
-        return $this->render('client/new.html.twig', [
-            'client' => $client,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -64,18 +66,31 @@ class ClientController extends AbstractController
      */
     public function show(Client $client): Response
     {
-        $adres = $this->getDoctrine()
+        $adreses = $this->getDoctrine()
         ->getRepository(Adres::class)
         ->findBy(['client' => $client]);
+
+        foreach($adreses as $adres){
+            $adresForm = $this->createForm(AdresType::class, $adres);
+            $adres->setForm($adresForm->createView());
+        }
+
+        $form = $this->createForm(ClientType::class, $client);
 
         $estimates = $this->getDoctrine()
         ->getRepository(Estimate::class)
         ->findBy(['client' => $client]);
 
+        foreach($estimates as $estimate){
+            $estimateForm = $this->createForm(EstimateType::class, $estimate);
+            $estimate->setForm($estimateForm->createView());
+        }
+
         return $this->render('client/show.html.twig', [
             'client' => $client,
-            'adres' => $adres,
+            'adres' => $adreses,
             'estimates' => $estimates,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -89,14 +104,15 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('client/edit.html.twig', [
-            'client' => $client,
-            'form' => $form->createView(),
-        ]);
+        $redirectRoute = $request->headers->get('referer');
+
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
+            return $this->redirectToRoute('client_index');
+        }
     }
 
     /**

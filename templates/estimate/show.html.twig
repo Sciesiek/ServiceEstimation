@@ -5,7 +5,12 @@
 {% block main %}
     <h1>Kosztorys {{ estimate.name }}</h1>
 
-    <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="edit">Edytuj</a>
+    {# <a href="{{ path('estimate_edit', {'id': estimate.id}) }}" class="edit">Edytuj</a> #}
+
+    <button onclick="openModal('edit{{ estimate.id }}')">Edytuj</button>
+    {{ include('_modal_form.html.twig', {modal_id: ['edit', estimate.id]|join, modal_title: 'Edytuj kosztorys',
+                 form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('estimate_edit', {'id': estimate.id }),
+                  'form': form}) }}
     {{ include('estimate/_delete_form.html.twig') }}
 
     <table class="table">

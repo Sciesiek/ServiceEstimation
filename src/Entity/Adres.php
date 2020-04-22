@@ -46,6 +46,8 @@ class Adres
      */
     private $estimate;
 
+    private $form;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +127,18 @@ class Adres
         if ($estimate->getAdres() !== $newAdres) {
             $estimate->setAdres($newAdres);
         }
+
+        return $this;
+    }
+
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
 
         return $this;
     }

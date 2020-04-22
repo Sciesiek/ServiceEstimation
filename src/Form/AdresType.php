@@ -20,11 +20,11 @@ class AdresType extends AbstractType
             ->add('city', TextType::class, ['label' => 'Miasto','trim' => false,'required' => true,])
             ->add('street', TextType::class, ['label' => 'Ulica','trim' => false,'required' => true,])
             ->add('housingNumber', TextType::class, ['label' => 'Numer domu/ulicy','trim' => false,])
-            ->add('postal', TextType::class, ['label' => 'Kod Pocztowy','trim' => false,
+            ->add('postal', TextType::class, ['label' => 'Kod Pocztowy','trim' => false,/*
             'constraints' => [new Length([
                 'min' => 7,
                 'max' => 7,
-            ])],'required' => true,])
+            ])],*/'required' => true,])
             ->add('client', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Client::class,

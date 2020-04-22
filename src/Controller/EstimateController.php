@@ -20,8 +20,16 @@ class EstimateController extends AbstractController
      */
     public function index(EstimateRepository $estimateRepository): Response
     {
+        $form = $this->createForm(EstimateType::class);
+        $estimates = $estimateRepository->findAll();
+        foreach($estimates as $estimate){
+            $estimateForm = $this->createForm(EstimateType::class, $estimate);
+            $estimate->setForm($estimateForm->createView());
+        }
+
         return $this->render('estimate/index.html.twig', [
-            'estimates' => $estimateRepository->findAll(),
+            'estimates' => $estimates,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -38,14 +46,14 @@ class EstimateController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($estimate);
             $entityManager->flush();
-
+        }
+        
+        $redirectRoute = $request->headers->get('referer');
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
             return $this->redirectToRoute('estimate_index');
         }
-
-        return $this->render('estimate/new.html.twig', [
-            'estimate' => $estimate,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -53,8 +61,10 @@ class EstimateController extends AbstractController
      */
     public function show(Estimate $estimate): Response
     {
+        $form = $this->createForm(EstimateType::class, $estimate);
         return $this->render('estimate/show.html.twig', [
             'estimate' => $estimate,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -68,14 +78,14 @@ class EstimateController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('estimate_index');
         }
 
-        return $this->render('estimate/edit.html.twig', [
-            'estimate' => $estimate,
-            'form' => $form->createView(),
-        ]);
+        $redirectRoute = $request->headers->get('referer');
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
+            return $this->redirectToRoute('estimate_index');
+        }
     }
 
     /**

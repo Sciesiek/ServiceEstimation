@@ -20,8 +20,16 @@ class AdresController extends AbstractController
      */
     public function index(AdresRepository $adresRepository): Response
     {
+        $form = $this->createForm(AdresType::class);
+        $adres = $adresRepository->findAll();
+        foreach($adres as $adre){
+            $adresForm = $this->createForm(AdresType::class, $adre);
+            $adre->setForm($adresForm->createView());
+        }
+
         return $this->render('adres/index.html.twig', [
-            'adres' => $adresRepository->findAll(),
+            'adres' => $adres,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -38,14 +46,15 @@ class AdresController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($adre);
             $entityManager->flush();
-
-            return $this->redirectToRoute('adres_index');
         }
 
-        return $this->render('adres/new.html.twig', [
-            'adre' => $adre,
-            'form' => $form->createView(),
-        ]);
+
+        $redirectRoute = $request->headers->get('referer');
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
+            return $this->redirectToRoute('adres_index');
+        }
     }
 
     /**
@@ -53,8 +62,10 @@ class AdresController extends AbstractController
      */
     public function show(Adres $adre): Response
     {
+        $form = $this->createForm(AdresType::class, $adre);
         return $this->render('adres/show.html.twig', [
             'adre' => $adre,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -68,14 +79,14 @@ class AdresController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('adres_index');
         }
 
-        return $this->render('adres/edit.html.twig', [
-            'adre' => $adre,
-            'form' => $form->createView(),
-        ]);
+        $redirectRoute = $request->headers->get('referer');
+        if($redirectRoute!==null){
+            return $this->redirect($redirectRoute);
+        }else{
+            return $this->redirectToRoute('adres_index');
+        }
     }
 
     /**

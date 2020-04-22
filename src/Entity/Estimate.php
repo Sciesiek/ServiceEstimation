@@ -44,6 +44,8 @@ class Estimate
      */
     private $estimateServices;
 
+    private $form;
+
     public function __construct()
     {
         $this->estimateServices = new ArrayCollection();
@@ -98,6 +100,18 @@ class Estimate
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
 
         return $this;
     }

@@ -24,11 +24,14 @@
             <td>{{ adre.estimate }}</td>
             <td>
                 <span class="right">
-                    <a href="{{ path('adres_show', {'id': adre.id}) }}" class="details">Pokaż</a>
-                    <a href="{{ path('adres_edit', {'id': adre.id}) }}" class="edit">Edytuj</a>
+                    <a href="{{ path('adres_show', {'id': adre.id}) }}" class="details">Szczegóły</a>
+                    <button onclick="openModal('adres_edit{{ adre.id }}')">Edytuj</button>
                 </span>
             </td>
         </tr>
+        {{ include('_modal_form.html.twig', {modal_id: ['adres_edit', adre.id]|join, modal_title: 'Edytuj adres',
+        form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }),
+        'form': adre.form}) }}
     {% else %}
         <tr>
             <td colspan="6">Brak danych</td>
