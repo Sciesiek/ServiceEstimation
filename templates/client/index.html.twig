@@ -6,7 +6,7 @@
     <h1>Spis klientów</h1>
     <button onclick="openModal('add')">Dodaj nowego klienta</button>
     {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Dodaj klienta',
-     form_path: '_form.html.twig', form_button: 'Dodaj', action_path: path('client_new') }) }}
+     form_button: 'Dodaj', action_path: path('client_new') }) }}
     <table class="table">
         <thead>
             <tr>
@@ -29,10 +29,8 @@
                 <span>
                 </td>
             </tr>
-                {{ include('_modal_form.html.twig', {modal_id: ['edit', client.id]|join, modal_title: 'Edytuj klienta',
-                 form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('client_edit', {'id': client.id }),
-                  'form': client.form}) }}
-                
+                {{ include('_modal_form.html.twig', {modal_id: ['edit', client.id]|join, modal_title: 'Edytuj klienta'
+                , form_button: 'Edytuj', action_path: path('client_edit', {'id': client.id }), 'form': client.form}) }}       
         {% else %}
             <tr>
                 <td colspan="4">Brak danych</td>

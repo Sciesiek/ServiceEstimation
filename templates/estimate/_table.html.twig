@@ -25,8 +25,7 @@
                 </td>
             </tr>
             {{ include('_modal_form.html.twig', {modal_id: ['estimate_edit', estimate.id]|join, modal_title: 'Edytuj kosztorys',
-            form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('estimate_edit', {'id': estimate.id }),
-            'form': estimate.form}) }}
+             form_button: 'Edytuj', action_path: path('estimate_edit', {'id': estimate.id }), 'form': estimate.form}) }}
         {% else %}
             <tr>
                 <td colspan="4">Brak danych</td>

@@ -6,7 +6,7 @@
     <h1>Spis adresów</h1>
         <button onclick="openModal('add')">Dodaj nowy adres</button>
     {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Dodaj adres',
-     form_path: '_form.html.twig', form_button: 'Dodaj', action_path: path('adres_new') }) }}
+     form_button: 'Dodaj', action_path: path('adres_new') }) }}
 
     {{ include('adres/_table.html.twig') }} 
 

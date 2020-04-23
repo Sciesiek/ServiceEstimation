@@ -30,7 +30,7 @@
             </td>
         </tr>
         {{ include('_modal_form.html.twig', {modal_id: ['adres_edit', adre.id]|join, modal_title: 'Edytuj adres',
-        form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }),
+         form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }),
         'form': adre.form}) }}
     {% else %}
         <tr>

@@ -6,7 +6,7 @@
     <h1>Adres</h1>
     <button onclick="openModal('add')">Edytuj adres</button>
     {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Edytuj adres',
-     form_path: '_form.html.twig', form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }) }) }}
+     form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }) }) }}
     {{ include('adres/_delete_form.html.twig') }}
     <table class="table">
         <tbody>
