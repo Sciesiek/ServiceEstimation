@@ -1,0 +1,37 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Usługa{% endblock %}
+
+{% block main %}
+    <h1>Usługa</h1>
+
+    <button onclick="openModal('edit_service{{ service.id }}')">Edytuj</button>
+    {{ include('_modal_form.html.twig', {modal_id: ['edit_service', service.id]|join, modal_title: 'Edytuj usługę'
+    , form_button: 'Edytuj', action_path: path('service_edit', {'id': service.id }), 'form': form}) }}
+
+    <button onclick="openModal('delete_service{{ service.id }}')">Usuń</button>
+    {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_service', service.id]|join,
+    action_path: path('service_delete', {'id': service.id }), item_id: service.id,
+    item_name: service}) }}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>Nazwa</th>
+                <td>{{ service.name }}</td>
+            </tr>
+            <tr>
+                <th>Opis</th>
+                <td>{{ service.description }}</td>
+            </tr>
+            <tr>
+                <th>Jednostka</th>
+                <td>{{ service.unit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

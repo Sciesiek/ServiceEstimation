@@ -26,6 +26,7 @@ class AdresType extends AbstractType
                 'max' => 7,
             ])],*/'required' => true,])
             ->add('client', EntityType::class, [
+                'label' => 'Klient',
                 // looks for choices from this entity
                 'class' => Client::class,
                 //'choice_label' => 'surname', 

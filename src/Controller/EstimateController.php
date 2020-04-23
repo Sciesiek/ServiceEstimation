@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Estimate;
 use App\Form\EstimateType;
 use App\Repository\EstimateRepository;
+use App\Entity\EstimateService;
+use App\Form\EstimateServiceType;
+use App\Repository\EstimateServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,10 +64,23 @@ class EstimateController extends AbstractController
      */
     public function show(Estimate $estimate): Response
     {
+        $estimateServices = $this->getDoctrine()
+        ->getRepository(EstimateService::class)
+        ->findBy(['estimate' => $estimate]);
+
+        foreach($estimateServices as $estimateService){
+            $estimateServiceForm = $this->createForm(EstimateServiceType::class, $estimateService);
+            $estimateService->setForm($estimateServiceForm->createView());
+        }
+
         $form = $this->createForm(EstimateType::class, $estimate);
+        $estimateServiceForm = $this->createForm(EstimateServiceType::class);
+
         return $this->render('estimate/show.html.twig', [
             'estimate' => $estimate,
             'form' => $form->createView(),
+            'estimate_services' => $estimateServices,
+            'estimate_services_form' => $estimateServiceForm->createView(),
         ]);
     }
 

@@ -1,5 +1,0 @@
-<form method="post" action="{{ path('estimate_delete', {'id': estimate.id}) }}" onsubmit="return confirm('Czy jestś pewien, że chcesz usunąć ten kosztorys?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ estimate.id) }}">
-    <button class="btn">Usuń</button>
-</form>

@@ -1,0 +1,16 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Jednostka: {{ unit.name }}{% endblock %}
+
+{% block main %}
+    <h1>Jednostka: {{ unit.name }}</h1>
+    <button onclick="openModal('edit_unit{{ unit.id }}')">Edytuj</button>
+    {{ include('_modal_form.html.twig', {modal_id: ['edit_unit', unit.id]|join, modal_title: 'Edytuj jednostke',
+     form_button: 'Edytuj', action_path: path('unit_edit', {'id': unit.id }), 'form': form}) }}
+
+    <button onclick="openModal('delete_unit{{ unit.id }}')">Usuń</button>
+    {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_unit', unit.id]|join,
+    action_path: path('unit_delete', {'id': unit.id }), item_id: unit.id,
+    item_name: unit}) }} 
+
+{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block main %}
     <h1>Spis adresów</h1>
-        <button onclick="openModal('add')">Dodaj nowy adres</button>
+    <button onclick="openModal('add')">Dodaj nowy adres</button>
     {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Dodaj adres',
      form_button: 'Dodaj', action_path: path('adres_new') }) }}
 

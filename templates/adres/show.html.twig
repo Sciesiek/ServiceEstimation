@@ -4,10 +4,13 @@
 
 {% block main %}
     <h1>Adres</h1>
-    <button onclick="openModal('add')">Edytuj adres</button>
-    {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Edytuj adres',
+    <button onclick="openModal('edit')">Edytuj adres</button>
+    {{ include('_modal_form.html.twig', {modal_id: 'edit', modal_title: 'Edytuj adres',
      form_button: 'Edytuj', action_path: path('adres_edit', {'id': adre.id }) }) }}
-    {{ include('adres/_delete_form.html.twig') }}
+
+    <button onclick="openModal('delete_adres{{ adre.id }}')">Usuń</button>
+    {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_adres', adre.id]|join,
+     action_path: path('adres_delete', {'id': adre.id }), item_id: adre.id, item_name: adre}) }}
     <table class="table">
         <tbody>
             <tr>
@@ -15,20 +18,28 @@
                 <td>{{ adre.id }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Miasto</th>
                 <td>{{ adre.city }}</td>
             </tr>
             <tr>
-                <th>Street</th>
+                <th>Ulica</th>
                 <td>{{ adre.street }}</td>
             </tr>
             <tr>
-                <th>HousingNumber</th>
+                <th>Numer domu/ulicy</th>
                 <td>{{ adre.housingNumber }}</td>
             </tr>
             <tr>
-                <th>Postal</th>
+                <th>Adres pocztowy</th>
                 <td>{{ adre.postal }}</td>
+            </tr>
+            <tr>
+                <th>Klient</th>
+                <td>{{ adre.client }}</td>
+            </tr>
+            <tr>
+                <th>Kosztorys</th>
+                <td>{{ adre.estimate }}</td>
             </tr>
         </tbody>
     </table>

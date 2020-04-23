@@ -21,14 +21,17 @@
                 <span class="right">
                     <a href="{{ path('estimate_show', {'id': estimate.id}) }}" class="details">Szczegóły</a>
                     <button onclick="openModal('estimate_edit{{ estimate.id }}')">Edytuj</button>
+                    <button onclick="openModal('delete_estimate{{ estimate.id }}')">Usuń</button>
                 </span>
                 </td>
             </tr>
             {{ include('_modal_form.html.twig', {modal_id: ['estimate_edit', estimate.id]|join, modal_title: 'Edytuj kosztorys',
              form_button: 'Edytuj', action_path: path('estimate_edit', {'id': estimate.id }), 'form': estimate.form}) }}
+            {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_estimate', estimate.id]|join, 
+            action_path: path('estimate_delete', {'id': estimate.id }), item_id: estimate.id, item_name: estimate}) }}
         {% else %}
             <tr>
-                <td colspan="4">Brak danych</td>
+                <td colspan="6">Brak danych</td>
             </tr>
         {% endfor %}
         </tbody>

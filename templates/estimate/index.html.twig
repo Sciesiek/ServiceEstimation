@@ -7,7 +7,7 @@
     <button onclick="openModal('add')">Dodaj nowy kosztorys</button>
     {{ include('_modal_form.html.twig', {modal_id: 'add', modal_title: 'Dodaj kosztorys',
      form_button: 'Dodaj', action_path: path('estimate_new') }) }}
-
+    
     {{ include('estimate/_table.html.twig') }}
 
 {% endblock %}

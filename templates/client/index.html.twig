@@ -24,13 +24,18 @@
                 <td>{{ client.surname }}</td>
                 <td>
                 <span class="right">
-                <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
-                <button onclick="openModal('edit{{ client.id }}')">Edytuj</button>
+                    <a href="{{ path('client_show', {'id': client.id}) }}" class="details">Szczegóły</a>
+                    <button onclick="openModal('edit{{ client.id }}')">Edytuj</button>
+                    <button onclick="openModal('delete{{ client.id }}')">Usuń</button>
                 <span>
                 </td>
             </tr>
                 {{ include('_modal_form.html.twig', {modal_id: ['edit', client.id]|join, modal_title: 'Edytuj klienta'
-                , form_button: 'Edytuj', action_path: path('client_edit', {'id': client.id }), 'form': client.form}) }}       
+                , form_button: 'Edytuj', action_path: path('client_edit', {'id': client.id }), 'form': client.form}) }}
+
+                {{ include('_modal_delete_form.html.twig', {modal_id: ['delete', client.id]|join,
+                action_path: path('client_delete', {'id': client.id }), item_id: client.id,
+                item_name: client}) }}       
         {% else %}
             <tr>
                 <td colspan="4">Brak danych</td>

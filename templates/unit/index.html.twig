@@ -1,0 +1,44 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Spis jednostek dla usług{% endblock %}
+
+{% block main %}
+    <h1>Spis jednostek dla usług</h1>
+    <button onclick="openModal('add_unit')">Dodaj nową jednostke</button>
+    {{ include('_modal_form.html.twig', {modal_id: 'add_unit', modal_title: 'Dodaj jednostke',
+     form_button: 'Dodaj', action_path: path('unit_new') }) }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for unit in units %}
+            <tr>
+                <td>{{ unit.id }}</td>
+                <td>{{ unit.name }}</td>
+                <td>
+                <span class="right">
+                    <a href="{{ path('unit_show', {'id': unit.id}) }}" class="details">Szczegóły</a>
+                    <button onclick="openModal('edit_unit{{ unit.id }}')">Edytuj</button>
+                    <button onclick="openModal('delete_unit{{ unit.id }}')">Usuń</button>
+                <span>
+                </td>
+            </tr>
+                {{ include('_modal_form.html.twig', {modal_id: ['edit_unit', unit.id]|join, modal_title: 'Edytuj jednostke'
+                , form_button: 'Edytuj', action_path: path('unit_edit', {'id': unit.id }), 'form': unit.form}) }}
+
+                {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_unit', unit.id]|join,
+                action_path: path('unit_delete', {'id': unit.id }), item_id: unit.id,
+                item_name: unit}) }} 
+        {% else %}
+            <tr>
+                <td colspan="3">Brak danych</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

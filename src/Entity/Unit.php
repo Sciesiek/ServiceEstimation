@@ -28,6 +28,8 @@ class Unit
      */
     private $service;
 
+    private $form;
+
     public function __construct()
     {
         $this->service = new ArrayCollection();
@@ -46,6 +48,18 @@ class Unit
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
 
         return $this;
     }
@@ -79,5 +93,9 @@ class Unit
         }
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }

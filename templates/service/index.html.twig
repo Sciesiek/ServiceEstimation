@@ -1,0 +1,48 @@
+{% extends 'base_logged.html.twig' %}
+
+{% block title %}Spis usług{% endblock %}
+
+{% block main %}
+    <h1>Spis usług</h1>
+    <button onclick="openModal('add_service')">Dodaj nową usługę</button>
+    {{ include('_modal_form.html.twig', {modal_id: 'add_service', modal_title: 'Dodaj usługę',
+     form_button: 'Dodaj', action_path: path('service_new') }) }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Jednostka</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.name }}</td>
+                <td>{{ service.description }}</td>
+                <td>{{ service.unit }}</td>
+                <td>
+                    <span class="right">
+                        <a href="{{ path('service_show', {'id': service.id}) }}" class="details">Szczegóły</a>
+                        <button onclick="openModal('edit_service{{ service.id }}')">Edytuj</button>
+                        <button onclick="openModal('delete_service{{ service.id }}')">Usuń</button>
+                    <span>
+                </td>
+            </tr>
+              {{ include('_modal_form.html.twig', {modal_id: ['edit_service', service.id]|join, modal_title: 'Edytuj usługę'
+                , form_button: 'Edytuj', action_path: path('service_edit', {'id': service.id }), 'form': service.form}) }}
+
+                {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_service', service.id]|join,
+                action_path: path('service_delete', {'id': service.id }), item_id: service.id,
+                item_name: service}) }}
+        {% else %}
+            <tr>
+                <td colspan="6">Brak danych</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

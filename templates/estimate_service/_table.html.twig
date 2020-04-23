@@ -1,0 +1,54 @@
+<button onclick="openModal('add_estimate_service')">Dodaj nową usługę do kosztorysu</button>
+{{ include('_modal_form.html.twig', {modal_id: 'add_estimate_service', modal_title: 'Dodaj usługę do kosztorysu',
+    form_button: 'Dodaj', action_path: path('estimate_service_new'), form: estimate_services_form}) }}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nazwa</th>
+            <th>Data</th>
+            <th>Cena za jednostkę</th>
+            <th>Ilość</th>
+            <th>Cena za usługę<th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set estimate_sum = 0 %}
+    {% for estimate_service in estimate_services %}
+        {% set current_service_price = estimate_service.amount * estimate_service.unitPrice %}
+        {% set estimate_sum = estimate_sum + current_service_price %}
+        <tr>
+            <td>{{ estimate_service.id }}</td>
+            <td>{{ estimate_service.service }}</td>
+            <td>{{ estimate_service.date ? estimate_service.date|date('d-m-Y') : '' }}</td>
+            <td>{{ estimate_service.unitPrice }}</td>
+            <td>{{ [estimate_service.amount, estimate_service.service.unit]|join }}</td>
+            <td><span class="right">{{ current_service_price }}</span></td>
+            <td>
+                <span class="right">
+                    <button onclick="openModal('edit_estimate_service{{ estimate_service.id }}')">Edytuj</button>
+                    <button onclick="openModal('delete_estimate_service{{ estimate_service.id }}')">Usuń</button>
+                </span>
+            </td>
+        </tr>
+        {{ include('_modal_form.html.twig', {modal_id: ['edit_estimate_service', estimate_service.id]|join, modal_title: 'Edytuj usługę kosztorysu'
+        , form_button: 'Edytuj', action_path: path('estimate_service_edit', {'id': estimate_service.id }), 'form': estimate_service.form}) }}
+
+        {{ include('_modal_delete_form.html.twig', {modal_id: ['delete_estimate_service', estimate_service.id]|join,
+        action_path: path('estimate_service_delete', {'id': estimate_service.id }), item_id: estimate_service.id,
+        item_name: estimate_service}) }}     
+    {% else %}
+        <tr>
+            <td colspan="7">Brak danych</td>
+        </tr>
+    {% endfor %}
+        <tr>
+            <td colspan="6">
+                <span class="right"><strong>Razem:</strong> {{ estimate_sum }}</span>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+

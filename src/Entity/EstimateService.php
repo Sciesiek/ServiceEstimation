@@ -43,6 +43,8 @@ class EstimateService
      */
     private $amount;
 
+    private $form;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,4 +109,21 @@ class EstimateService
 
         return $this;
     }
+
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->service->getName();
+    }
+
 }

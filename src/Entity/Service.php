@@ -39,6 +39,8 @@ class Service
      */
     private $estimateServices;
 
+    private $form;
+
     public function __construct()
     {
         $this->estimateServices = new ArrayCollection();
@@ -85,6 +87,18 @@ class Service
         return $this;
     }
 
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    public function setForm($form): self
+    {
+        $this->form = $form;
+
+        return $this;
+    }
+
     /**
      * @return Collection|EstimateService[]
      */
@@ -114,5 +128,9 @@ class Service
         }
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }

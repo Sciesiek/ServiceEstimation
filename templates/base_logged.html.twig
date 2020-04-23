@@ -4,7 +4,8 @@
     {% block nav %}
     <a href="{{ path('client_index') }}">Klienci</a>
     <a href="{{ path('estimate_index') }}">Kosztorysy</a>
-    <a href="">Usługi</a>
+    <a href="{{ path('service_index') }}">Usługi</a>
+    <a href="{{ path('unit_index') }}">Jednostki</a>
     <a href="{{ path('adres_index') }}">Adresy</a>
     <a href="{{ path('fos_user_security_logout') }}">Wyloguj</a>
     {% endblock %}

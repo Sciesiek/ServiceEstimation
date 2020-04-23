@@ -1,0 +1,15 @@
+<div class="modal" id="{{ modal_id }}">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('{{ modal_id }}')">&times;</span>
+        <div class="form">
+            <form method="post" action="{{ action_path }}">
+                <h1>Usuwanie</h1>
+                <p>Czy jesteś pewien że chcesz usunąć: {{ item_name }}</p>
+                <hr>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ item_id) }}">
+                <button class="btn">Usuń</button>
+            </form>
+        </div>
+    </div>
+</div>
